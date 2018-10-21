@@ -1,0 +1,49 @@
+SHE BON : PULSE | by SARAH PETKUS
+
+Partlist exported from shebon_heart.sch at 10/21/18 2:06 PM
+
+Part      Value                 Device                     Package                   Description                MPN        VALUE           
+PIZZA                           ATMEGA-2560                TQFP-100-A                Atmel ATmega 640/1280/2560                            
+BLACKOUT  B3FS                  PUSHBTN-MOMB3FS            B3FS                      Pushbutton Switch                     B3FS                      
+C1        1uF                   CAPACITOR0603              0603                      Capacitor  CAP                                        
+C2        0.1uF                 CAPACITOR0603              0603                      Capacitor  CAP                                        
+C3        0.01uF                CAPACITOR0603              0603                      Capacitor  CAP                                        
+C14       0.1uF                 CAPACITOR0603              0603                      Capacitor  CAP                                        
+C15       0.1uF                 CAPACITOR0603              0603                      Capacitor  CAP                                        
+C16       0.1uF                 CAPACITOR0603              0603                      Capacitor  CAP                                        
+C17       1uF                   CAPACITOR0603              0603                      Capacitor  CAP                                        
+L_NIP     330uF/6.3V - 6.3mm    CAPACITOR_POL-ALUM-SMT-6.3 CAP_ALUM_SMT_6.3          Polarized Capacitor                   XXuF/xxV - 6.3mm
+R_NIP     330uF/6.3V - 6.3mm    CAPACITOR_POL-ALUM-SMT-6.3 CAP_ALUM_SMT_6.3          Polarized Capacitor                   XXuF/xxV - 6.3mm
+CANDY_1   WS2812                NEOPPIXEL5X5               NEOPIXEL                  Adafruit NeoPixel                     WS2812          
+CANDY_2   WS2812                NEOPPIXEL5X5               NEOPIXEL                  Adafruit NeoPixel                     WS2812          
+CANDY_3   WS2812                NEOPPIXEL5X5               NEOPIXEL                  Adafruit NeoPixel                     WS2812          
+CANDY_4   WS2812                NEOPPIXEL5X5               NEOPIXEL                  Adafruit NeoPixel                     WS2812          
+CANDY_5   WS2812                NEOPPIXEL5X5               NEOPIXEL                  Adafruit NeoPixel                     WS2812          
+CANDY_6   WS2812                NEOPPIXEL5X5               NEOPIXEL                  Adafruit NeoPixel                     WS2812          
+CANDY_7   WS2812                NEOPPIXEL5X5               NEOPIXEL                  Adafruit NeoPixel                     WS2812          
+CANDY_8   WS2812                NEOPPIXEL5X5               NEOPIXEL                  Adafruit NeoPixel                     WS2812          
+CANDY_9   WS2812                NEOPPIXEL5X5               NEOPIXEL                  Adafruit NeoPixel                     WS2812          
+CANDY_10  WS2812                NEOPPIXEL5X5               NEOPIXEL                  Adafruit NeoPixel                     WS2812          
+CANDY_11  WS2812                NEOPPIXEL5X5               NEOPIXEL                  Adafruit NeoPixel                     WS2812          
+CANDY_12  WS2812                NEOPPIXEL5X5               NEOPIXEL                  Adafruit NeoPixel                     WS2812          
+CANDY_13  WS2812                NEOPPIXEL5X5               NEOPIXEL                  Adafruit NeoPixel                     WS2812          
+CANDY_14  WS2812                NEOPPIXEL5X5               NEOPIXEL                  Adafruit NeoPixel                     WS2812          
+CR1       Murata CSTCE          RESONATORMURATA-CSTCE      MURATA_CSTCE              resonator xtal                        Murata CSTCE    
+F1        MF-MSMF050-2          FUSEBOURNS-MF-MSMF         BOURNS-MF-MSMF            Fuse                                  MF-MSMF050-2    
+FILLET-O  53015-0610_RA         53015-0610_RA              MICROBLADE-RA-06P         Molex, Microblade, 6-pin                              
+HED       53015-0610_RA         53015-0610_RA              MICROBLADE-RA-06P         Molex, Microblade, 6-pin                              
+BUNS      53015-0610_RA         53015-0610_RA              MICROBLADE-RA-06P         Molex, Microblade, 6-pin                    
+L_ARM     53015-0610_RA         53015-0610_RA              MICROBLADE-RA-06P         Molex, Microblade, 6-pin                              
+L_THIGH   53015-0610_RA         53015-0610_RA              MICROBLADE-RA-06P         Molex, Microblade, 6-pin                              
+R_ARM     53015-0610_RA         53015-0610_RA              MICROBLADE-RA-06P         Molex, Microblade, 6-pin                              
+R_THIGH   53015-0610_RA         53015-0610_RA              MICROBLADE-RA-06P         Molex, Microblade, 6-pin                                                                                  
+NECK      53015-0610_RA         53015-0610_RA              MICROBLADE-RA-06P         Molex, Microblade, 6-pin                              
+NIPS      53015-0610_RA         53015-0610_RA              MICROBLADE-RA-06P         Molex, Microblade, 6-pin                              
+WHISPER                         MA03-2                     MA03-2                    PIN HEADER                                            
+USB1      ZX62-B-5PA            MICRO-USB-SMD(ZX62-B-5PA)  MICRO-USB5+6P-SMD-0.65-AB 320010005                  ZX62-B-5PA ZX62-B-5PA      
+PWR_OK    GRN                   SMT0603                    SMD_0603                  LED SMT 0603 0805 1206                                
+HEARTBEAT RED                   SMT0603                    SMD_0603                  LED SMT 0603 0805 1206                                
+R27       1K                    RESISTOR0603               0603                      Resistor                                              
+R45       1K                    RESISTOR0603               0603                      Resistor                                              
+R53       100                   RESISTOR0603               0603                      Resistor                                              
+R54       10K                   RESISTOR0603               0603                      Resistor                                              
