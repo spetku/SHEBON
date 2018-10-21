@@ -1,2 +1,5 @@
 .DS_Store
 *.?#[1-9]
+/popGirl/software/PopGirl/build/
+/popGirl/software/PopGirl/dist/
+/popGirl/software/PopGirl/nbproject/private/
