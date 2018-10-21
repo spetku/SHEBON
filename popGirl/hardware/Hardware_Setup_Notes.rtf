@@ -1,0 +1,135 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Hack-Regular;\f2\fnil\fcharset0 Hack-Italic;
+}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red26\green26\blue26;\red67\green67\blue67;
+\red0\green0\blue0;\red38\green38\blue38;\red249\green249\blue249;\red27\green29\blue31;\red255\green255\blue255;
+}
+{\*\expandedcolortbl;;\csgenericrgb\c0\c0\c0;\cssrgb\c13333\c13333\c13333;\cssrgb\c33333\c33333\c33333;
+\cssrgb\c0\c0\c0\c74902;\cssrgb\c20000\c20000\c20000;\cssrgb\c98039\c98039\c98039;\cssrgb\c14118\c15294\c16078;\cssrgb\c100000\c100000\c100000;
+}
+\margl1440\margr1440\vieww14100\viewh15700\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \
+
+\b \ul PopGirl Hardware and Software\
+
+\b0 \ulnone Much of this is typed from memory and may be missing a step or some other detail here or there.  Please feel free to share any corrections or contact us to help you get through a step that is failing.\
+
+\b \ul \
+
+\b0 \ulnone Hardware\
+The PopGirl uses a Raspberry Pi Zero W to drive a AdaFruit 5" LCD with touch panel.  The serial port pins (RX and TX) on the GPIO connector are level translated to 5V signal levels for communication with the heart shaped sensor processor board that is located in the heart-shaped backpack.\
+\
+The sensor board collects and formats sensor data and then bursts them over the serial line once every half-second.  The Raspberry Pi listens for this packet and decodes the values into their respective display values.\
+\
+\
+
+\b Raspberry Pi\
+
+\b0 Configure a microSD card to run "Raspian with Desktop" from:\
+https://www.raspberrypi.org/downloads/raspbian/\
+\
+If you are new to Raspberry Pi, there are a number of utilities to burn the Raspian image to the SD card.   On our Mac, we used: Apple Pi Baker https://www.tweaking4all.com/?s=apple+pi\
+\
+At first, you should hook your Raspberry Pi up to a regular monitor, keyboard and mouse.  Boot the system up.\
+\
+You will want to ultimately enable SSH and VNC so that you can administer and test the app from the comfort of your PC or Mac.  Here is a link for how to enable SSH and VNC.  Any other services should be left alone at this point as we don't use them.\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 https://www.raspberrypi.org/documentation/remote-access/\
+\
+\
+\cf2 Disable Serial Console (because we need to use it for our hardware).\
+Read this to understand how to configure the serial: https://www.raspberrypi.org/documentation/configuration/uart.md\
+See the section called "
+\i \expnd0\expndtw0\kerning0
+Disabling Linux's use of console UART
+\i0 "\kerning1\expnd0\expndtw0 \
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \
+
+\b Software
+\b0 \
+The PopGirl app is written in JavaFX using OpenJava8 but also leverages Pi4J and WiringPi to allow serial port com munition as well as GPIO functions.  There are a number of steps to get the stock Raspberry Pi ready for running the Java application.\
+\
+The Oracle Java8 that is included with the Raspbian distribution will not work for JavaFX.  Oracle has decided to decouple JavaFX from the core Java going forward.   Future versions of Java will have a better mechanism for add JavaFX as an optional module, but for now we need to uninstall the Oracle Java and replace it with OpenJava.  Then we can add the OpenJFX library.\
+\
+\ul Remove Oracle Java:\
+\pard\pardeftab720\partightenfactor0
+\cf2 \expnd0\expndtw0\kerning0
+\ulnone sudo apt-get remove --purge oracle-java8-jdk\
+\
+\ul Add Open Java:\
+\ulnone sudo apt-get install openjava openjfx\
+\
+\ul WiringPi \ulnone (to access the GPIO/Serial pins from Java)\
+The version of wiring-pi should be 1.2 or above.  If it's 1.1 then you need to replace it:\
+\pard\pardeftab720\li140\fi-140\ri860\sa140\partightenfactor0
+\cf2 curl -s get.pi4j.com | sudo bash\
+\pard\pardeftab720\partightenfactor0
+\cf2 This Pi4J reference may also help:    http://pi4j.com/install.html\
+\
+\ul GPU Memory Setting:\
+\ulnone From the Desktop go to: \cf4 \cb7 [Menu] --> [Preferences] --> [Raspberry pi config..] --> [Performance]\cf2 \cb1 \
+Adjust the GPU memory to 128\
+\
+
+\b Application\
+
+\b0 At this point, JavaFX applications should run OK.\
+\
+\ul Hiding the mouse cursor\
+\ulnone Since we are using a touch screen, we want the mouse cursor to disappear.  There's an app for that:\
+\pard\pardeftab720\partightenfactor0
+\cf8 \cb9 https://spellfoundry.com/2016/05/29/configuring-gpio-serial-port-raspbian-jessie-including-pi-3/\
+\
+Let's assume that your Java app is called "PopGirl.jar" and you uploaded it into /home/pi/\
+Notice that we need to tell java to set the 
+\i \cf2 \cb1 \kerning1\expnd0\expndtw0 \CocoaLigature0 pi4j.linking=dynamic
+\i0  property so that it uses the newer version of WiringPi.\
+\cf8 \cb9 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+\ul Running the app from the command line \ulnone (you will need to set the X-display screen number):\
+export DISPLAY=:0\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+\cf2 \cb1 \kerning1\expnd0\expndtw0 \CocoaLigature0 /usr/bin/java -Dpi4j.linking=dynamic -jar /home/pi/PopGirl.jar\
+\cf8 \cb9 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+If that's all working, then lets make the JAR start at boot.\
+\
+\pard\pardeftab720\partightenfactor0
+\cf8 \ul \ulc8 Autostarting the app:\
+\ulnone Edit:   
+\f1 \cf2 \cb1 \kerning1\expnd0\expndtw0 ~/.config/lxsession/LXDE-pi/autostart\
+\
+
+\f0 Add this line to the end of the file (notice it starts with @ symbol):\
+
+\f1 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f2\i \cf2 \CocoaLigature0 @/usr/bin/java -Dpi4j.linking=dynamic -jar /home/pi/PopGirl.jar\
+\pard\pardeftab720\partightenfactor0
+
+\f0\i0 \cf8 \cb9 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+The app should start up ten or so seconds after the desktop comes up.\
+\
+If you need to debug why the app might not be coming up on it's own then look in this log file for clues:\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f2\i \cf2 \cb1 \kerning1\expnd0\expndtw0 \CocoaLigature0 cat /home/pi/.cache/lxsession/LXDE-pi/run.log\
+\pard\pardeftab720\partightenfactor0
+
+\f0\i0 \cf8 \cb9 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+\
+\
+\
+\
+\
+\
+}
