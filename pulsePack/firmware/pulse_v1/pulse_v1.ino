@@ -26,6 +26,11 @@
 #define NEOPIXEL_PIN 6
 #define NEOPIXEL_COUNT 14
 
+// Pasty Motor
+#define MTR_PIN 7
+#define DIR_PIN 8
+
+
 // Parameter 1 = number of pixels in strip
 // Parameter 2 = Arduino pin number (most are valid)
 // Parameter 3 = pixel type flags, add together as needed:
@@ -39,6 +44,14 @@ void setup() {
   strip.show(); // Initialize all pixels to 'off'
 
   pinMode(LED_BUILTIN, OUTPUT);
+
+  // Motor
+  pinMode( DIR_PIN, OUTPUT );
+  digitalWrite( DIR_PIN, LOW );
+  
+  analogWrite( MTR_PIN, 180 );
+  delay(1000);
+  analogWrite( MTR_PIN, 0 );
 
   //  Fillet-O Connector
   Serial1.begin(38400);
@@ -64,7 +77,15 @@ void loop() {
     } else {
       //colorWipe(strip.Color(0,45, 0), 10);
       //colorWipe(strip.Color(0,(3600-onTime)/15, 0), 10);
-      colorWipe(strip.Color(0,200*onTime/3600,0),6);
+      colorWipe(strip.Color(180*onTime/3600,0,0),6);
+    }
+
+    // Motor
+    if ( onTime < 300 || onTime > 3600 ) {
+      analogWrite( MTR_PIN, 0);
+    } else {
+      //analogWrite(MTR_PIN, 255 - (onTime/15) );
+      analogWrite(MTR_PIN, 35 + (180*onTime/3600) );
     }
     irLedOff();
 

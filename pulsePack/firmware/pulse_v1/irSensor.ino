@@ -22,11 +22,12 @@
 #define MAX_SAMPLES 3600
 
 
-// L_ARM Connector
-// Define IR LED Pin : D2
-#define IRLED 48
-// Define Sig Pin = 3
-#define SIG_0 49
+// Bra Connector
+//#define IRLED 48   // L_ARM
+#define IRLED 9      // NIPS
+
+//#define SIG_0 49   // L_ARM
+#define SIG_0 10     // NIPS
 
 
 
